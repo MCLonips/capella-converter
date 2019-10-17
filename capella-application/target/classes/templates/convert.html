@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Datenupload</title>
+    <link href="style.css" media="screen" rel="stylesheet" type="text/css"/>
+</head>
+<body style="">
+<hr/>
+<h1 style="text-align:center">Willkommen beim Capella Converter des Regimentsspielmannszuges Die Dürwisser Jonge</h1>
+<img class="center" th:src="@{Wappen.jpg}"/>
+<hr/>
+<h2>Datei zur Konvertierung hier hochladen:</h2>
+<form action="#" enctype="multipart/form-data" method="post" th:action="@{./convert}">
+    <input name="file" type="file"/><br/><br/>
+    <br/><br/>
+    <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+</form>
+<hr/>
+</body>
+</html>
