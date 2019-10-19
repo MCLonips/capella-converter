@@ -1,6 +1,6 @@
 package de.mclonips.clubadministration.capella.controller;
 
-import de.mclonips.clubadministration.test.data.DataRegister;
+import de.mclonips.clubadministration.capella.register.DataRegister;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,7 +16,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
@@ -26,7 +28,7 @@ class CapellaControllerTest {
     private CapellaController sut;
 
     @BeforeEach
-    public void setUp(){
+    public void setUp() {
         assertNotNull(sut);
     }
 
@@ -52,7 +54,7 @@ class CapellaControllerTest {
 
         assertNotNull(mock);
 
-        Mockito.doReturn(UUID.randomUUID().toString()+".txt").when(mock).getOriginalFilename();
+        Mockito.doReturn(UUID.randomUUID().toString() + ".txt").when(mock).getOriginalFilename();
 
         assertFalse(sut.isValid(mock));
     }

@@ -56,7 +56,7 @@
         <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
         <dockerfile-maven-plugin.version>1.4.10</dockerfile-maven-plugin.version>
         <jacoco-plugin.version>0.8.3</jacoco-plugin.version>
-        <jib-maven-plugin.version>1.0.2</jib-maven-plugin.version>
+        <jib-maven-plugin.version>1.6.1</jib-maven-plugin.version>
     </properties>
 
     <profiles>
@@ -330,7 +330,7 @@
                     <version>${jib-maven-plugin.version}</version>
                     <configuration>
                         <to>
-                            <image>mclonips/clubadministration:${project.docker.tag}</image>
+                            <image>docker.pkg.github.com/mclonips/capella-converter/capella-converter:${project.docker.tag}</image>
                             <auth>
                                 <username>${env.DOCKER_USER}</username>
                                 <password>${env.DOCKER_PASSWORD}</password>
@@ -381,6 +381,7 @@
         </plugins>
     </build>
 
+    <!--TODO Das muss ich auch noch ändern...-->
     <scm>
         <connection>scm:git:git@github.com:MCLonips/capella-converter.git</connection>
         <url>https://github.com/MCLonips/capella-converter</url>

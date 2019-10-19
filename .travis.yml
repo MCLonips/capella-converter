@@ -1,0 +1,24 @@
+language: java
+jdk: openjdk11
+
+service:
+  - docker
+
+install: true
+
+script:
+  - mvn clean verify install
+
+deploy:
+  - provider: script
+    script: cd capella-application && mvn clean package -DskipTests -Pproduction jib:build
+    on:
+      branch: master
+  - provider: script
+    script: cd capella-application && mvn clean package -DskipTests -Pdevelop jib:build
+    on:
+      branch: dev
+
+cache:
+  directories:
+  - $HOME/.m2

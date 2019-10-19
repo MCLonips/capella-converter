@@ -2,9 +2,9 @@ package de.mclonips.clubadministration.capella.service;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import de.mclonips.clubadministration.capella.register.DataRegister;
 import de.mclonips.clubadministration.capella.entity.*;
 import de.mclonips.clubadministration.capella.entity.type.RepetitionTyp;
-import de.mclonips.clubadministration.test.data.DataRegister;
 import de.mclonips.commons.io.PathUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

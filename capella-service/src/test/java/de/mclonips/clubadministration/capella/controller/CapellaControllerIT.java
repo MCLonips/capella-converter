@@ -1,6 +1,6 @@
 package de.mclonips.clubadministration.capella.controller;
 
-import de.mclonips.clubadministration.test.data.DataRegister;
+import de.mclonips.clubadministration.capella.register.DataRegister;
 import de.mclonips.commons.io.PathUtils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -22,7 +22,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * @author Tim Franken (FRTI)
@@ -56,8 +56,8 @@ public class CapellaControllerIT {
 
         try {
             final MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.multipart("/convert").file(multipartFile))
-                                                    .andExpect(MockMvcResultMatchers.status().isOk())
-                                                    .andReturn();
+                    .andExpect(MockMvcResultMatchers.status().isOk())
+                    .andReturn();
             final byte[] content = mvcResult.getResponse().getContentAsByteArray();
 
             PathUtils.write(this.targetFile, content);
@@ -67,8 +67,8 @@ public class CapellaControllerIT {
         }
 
         Assertions.assertAll(() -> Assertions.assertNotNull(this.targetFile),
-                             () -> assertTrue(PathUtils.exists(this.targetFile)),
-                             () -> Assertions.assertTrue(PathUtils.size(this.targetFile) > 0));
+                () -> assertTrue(PathUtils.exists(this.targetFile)),
+                () -> Assertions.assertTrue(PathUtils.size(this.targetFile) > 0));
     }
 
     private MockMultipartFile getMockMultipartFile(final DataRegister inputData) {

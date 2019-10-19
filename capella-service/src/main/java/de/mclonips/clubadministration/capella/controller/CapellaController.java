@@ -1,7 +1,6 @@
 package de.mclonips.clubadministration.capella.controller;
 
 import com.google.common.base.Strings;
-import de.mclonips.clubadministration.api.controller.ICapellaController;
 import de.mclonips.clubadministration.capella.service.CapellaService;
 import de.mclonips.commons.io.PathUtils;
 import org.slf4j.Logger;
@@ -78,6 +77,12 @@ public class CapellaController implements ICapellaController {
         }
 
         return result;
+    }
+
+    @Override
+    public String version() {
+        //TODO @frti return version
+        return null;
     }
 
     boolean isValid(final MultipartFile file) {

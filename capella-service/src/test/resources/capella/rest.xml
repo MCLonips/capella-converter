@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<noteObjects>
+    <rest>
+        <duration base="1/8"/>
+    </rest>
+    <rest>
+        <duration base="1"/>
+    </rest>
+</noteObjects>

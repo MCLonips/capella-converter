@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<noteObjects>
+    <chord>
+        <duration base="1/4"/>
+        <heads>
+            <head pitch="C6"/>
+        </heads>
+    </chord>
+
+    <chord>
+        <duration base="1/4" dots="1"/>
+        <heads>
+            <head pitch="D6"/>
+        </heads>
+    </chord>
+
+    <chord>
+        <duration base="1/4" dots="1"/>
+        <heads>
+            <head pitch="F6">
+                <alter step="1"/>
+            </head>
+        </heads>
+    </chord>
+</noteObjects>
