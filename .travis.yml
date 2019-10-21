@@ -11,11 +11,15 @@ script:
 
 deploy:
   - provider: script
-    script: cd capella-application && mvn clean package -DskipTests -Pproduction jib:build
+    script:
+      - cd capella-application && mvn clean package -DskipTests -Pproduction jib:build
+      - cp .travis.settings.xml $HOME/.m2/settings.xml && cd capella-application && mvn deploy
     on:
       branch: master
   - provider: script
-    script: cd capella-application && mvn clean package -DskipTests -Pdevelop jib:build
+    script:
+      - cd capella-application && mvn clean package -DskipTests -Pdevelop jib:build
+      - cp .travis.settings.xml $HOME/.m2/settings.xml && cd capella-application && mvn deploy
     on:
       branch: dev
 
