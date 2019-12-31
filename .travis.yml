@@ -11,17 +11,12 @@ script:
 
 deploy:
   - provider: script
+    skip_cleanup: true
     script:
-      - cd capella-application && mvn clean package -DskipTests -Pproduction jib:build
-      - cp .travis.settings.xml $HOME/.m2/settings.xml && cd capella-application && mvn deploy
+      - cd capella-application && mvn clean install -DskipTests -Pproduction jib:build
+      - cp .travis.settings.xml $HOME/.m2/settings.xml && cd capella-service && mvn deploy -DskipTests
     on:
       branch: master
-  - provider: script
-    script:
-      - cd capella-application && mvn clean package -DskipTests -Pdevelop jib:build
-      - cp .travis.settings.xml $HOME/.m2/settings.xml && cd capella-application && mvn deploy
-    on:
-      branch: dev
 
 cache:
   directories:
