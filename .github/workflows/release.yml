@@ -19,9 +19,13 @@ jobs:
           servers: '[{"id": "github", "username": "x-access-token", "password": "${GITHUB_TOKEN}"}]'
       - name: checkout
         uses: actions/checkout@v1
+      - name: Build with Maven
+        run: mvn clean test verify install
       - name: Deploy Maven-Artifacts
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: mvn -B -e -Dmaven.wagon.http.pool=false clean deploy
+          DOCKER_USER: ${{ secrets.DOCKER_USER }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: mvn -Dmaven.wagon.http.pool=false deploy
       - name: Build and Push Docker container
-        run: mvn clean install -DskipTests -Pproduction jib:build
+        run: cd capella-application && mvn jib:build
