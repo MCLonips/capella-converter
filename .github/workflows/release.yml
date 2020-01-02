@@ -24,8 +24,10 @@ jobs:
       - name: Deploy Maven-Artifacts
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DOCKER_USER: ${{ secrets.DOCKER_USER }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: cd capella-service && mvn -Dmaven.wagon.http.pool=false deploy
       - name: Build and Push Docker container
+        env:
+          DOCKER_USER: ${{ secrets.DOCKER_USER }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: cd capella-application && mvn jib:build
+
