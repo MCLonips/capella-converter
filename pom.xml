@@ -5,7 +5,7 @@
 
     <groupId>de.mclonips</groupId>
     <artifactId>capella-converter</artifactId>
-    <version>0.1.0</version>
+    <version>1.0.0</version>
 
     <modules>
         <module>capella-service</module>
@@ -51,33 +51,6 @@
         <jib-maven-plugin.version>1.6.1</jib-maven-plugin.version>
         <maven-deploy-plugin.version>3.0.0-M1</maven-deploy-plugin.version>
     </properties>
-
-    <profiles>
-        <profile>
-            <id>production</id>
-            <properties>
-                <spring.active.profiles>production</spring.active.profiles>
-                <project.docker.tag>latest</project.docker.tag>
-            </properties>
-        </profile>
-        <profile>
-            <id>develop</id>
-            <properties>
-                <spring.active.profiles>develop</spring.active.profiles>
-                <project.docker.tag>beta</project.docker.tag>
-            </properties>
-        </profile>
-        <profile>
-            <id>local</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <spring.profiles.active>test</spring.profiles.active>
-                <project.docker.tag>alpha</project.docker.tag>
-            </properties>
-        </profile>
-    </profiles>
 
     <dependencyManagement>
         <dependencies>
@@ -210,11 +183,15 @@
                     <version>${jib-maven-plugin.version}</version>
                     <configuration>
                         <to>
-                            <image>docker.pkg.github.com/mclonips/capella-converter/capella-converter:${project.docker.tag}</image>
+                            <image>docker.pkg.github.com/mclonips/capella-converter/capella-converter</image>
                             <auth>
                                 <username>${env.DOCKER_USER}</username>
                                 <password>${env.DOCKER_PASSWORD}</password>
                             </auth>
+                            <tags>
+                                <tag>${project.version}</tag>
+                                <tag>latest</tag>
+                            </tags>
                         </to>
                     </configuration>
                 </plugin>

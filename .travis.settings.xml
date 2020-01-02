@@ -34,7 +34,7 @@
     <server>
         <id>github</id>
         <username>MCLonips</username>
-        <password>${DEPLOY_KEY}</password>
+        <password>${env.DEPLOY_KEY}</password>
     </server>
 </servers>
 </settings>
