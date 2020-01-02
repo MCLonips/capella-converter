@@ -19,10 +19,9 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Tim Franken (FRTI)
@@ -30,7 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class CapellaControllerIT {
 
-    private static Logger logger = LoggerFactory.getLogger(CapellaControllerIT.class);
+    private static final Logger logger = LoggerFactory.getLogger(CapellaControllerIT.class);
     @Autowired
     private WebApplicationContext wac;
     private MockMvc mockMvc;
@@ -73,14 +72,14 @@ public class CapellaControllerIT {
 
     private MockMultipartFile getMockMultipartFile(final DataRegister inputData) {
         final String originalFilename = inputData.getFilename();
-        final Path input = inputData.getFilePath();
+        var input = inputData.getInputStream();
 
-        assertTrue(PathUtils.exists(input));
+        assertNotNull(input);
 
         MockMultipartFile multipartFile = null;
 
         try {
-            multipartFile = new MockMultipartFile("file", originalFilename, null, Files.newInputStream(input));
+            multipartFile = new MockMultipartFile("file", originalFilename, null, input);
         } catch (final IOException ignore) {
         }
 

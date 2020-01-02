@@ -1,8 +1,8 @@
 package de.mclonips.clubadministration.capella.register;
 
-import java.io.IOException;
+import lombok.SneakyThrows;
+
 import java.io.InputStream;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -19,21 +19,23 @@ public enum DataRegister {
 
     private final Path ROOT = Paths.get("src/test/resources/");
     private final Path filePath;
+    private final String resourceName;
 
     DataRegister(final String filePath) {
-        this.filePath = ROOT.resolve(filePath);
+        this.resourceName = filePath;
+        this.filePath = this.ROOT.resolve(this.resourceName);
     }
 
-    public InputStream getInputStream() throws IOException {
-        return Files.newInputStream(this.getFilePath());
+    @SneakyThrows
+    public InputStream getInputStream() {
+        return this.getClass().getClassLoader().getResourceAsStream(this.resourceName);
     }
 
-    //TODO @frti hier auf stream umstellen
     public Path getFilePath() {
         return this.filePath;
     }
 
-    public String getFilename(){
+    public String getFilename() {
         return this.filePath.getFileName().toString();
     }
 
