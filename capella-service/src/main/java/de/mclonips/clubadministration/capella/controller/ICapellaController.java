@@ -20,7 +20,4 @@ public interface ICapellaController {
             produces = MediaType.APPLICATION_OCTET_STREAM_VALUE
     )
     ResponseEntity<ByteArrayResource> convertFile(@RequestParam("file") final MultipartFile file, final RedirectAttributes redirectAttributes);
-
-    @GetMapping(path = "/version", produces = MediaType.TEXT_PLAIN_VALUE)
-    String version();
 }

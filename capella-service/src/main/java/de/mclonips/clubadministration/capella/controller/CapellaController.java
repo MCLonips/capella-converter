@@ -78,12 +78,6 @@ public class CapellaController implements ICapellaController {
         return result;
     }
 
-    @Override
-    public String version() {
-        //TODO @frti return version
-        return null;
-    }
-
     boolean isValid(final MultipartFile file) {
         //Check if File is null
         if (file == null) {
