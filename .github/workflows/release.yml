@@ -26,6 +26,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DOCKER_USER: ${{ secrets.DOCKER_USER }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        run: mvn -Dmaven.wagon.http.pool=false deploy
+        run: cd capella-service && mvn -Dmaven.wagon.http.pool=false deploy
       - name: Build and Push Docker container
         run: cd capella-application && mvn jib:build
