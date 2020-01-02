@@ -27,7 +27,7 @@ jobs:
         run: cd capella-service && mvn -Dmaven.wagon.http.pool=false deploy
       - name: Build and Push Docker container
         env:
-          DOCKER_USER: ${{ secrets.DOCKER_USER }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          DOCKER_USER: "x-access-token"
+          DOCKER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
         run: cd capella-application && mvn jib:build
 
