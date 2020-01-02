@@ -15,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.xml.sax.SAXException;
 
-import javax.ws.rs.InternalServerErrorException;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -40,7 +39,7 @@ public class CapellaController implements ICapellaController {
     public ResponseEntity<ByteArrayResource> convertFile(final MultipartFile file, final RedirectAttributes redirectAttributes) {
         //Check if file is valid
         if (!this.isValid(file)) {
-            throw new InternalServerErrorException("Given File is not valid!");
+            throw new IllegalArgumentException("Given File is not valid!");
         }
 
         //Save uploaded data
@@ -51,7 +50,7 @@ public class CapellaController implements ICapellaController {
             PathUtils.write(file.getInputStream(), uploadPath);
         } catch (final IOException ioe) {
             CapellaController.logger.error(ioe.getMessage(), ioe);
-            throw new InternalServerErrorException("Not able to save the given file on the local filesystem!", ioe);
+            throw new IllegalArgumentException("Not able to save the given file on the local filesystem!", ioe);
         }//try-catch
 
         //convert the file
@@ -61,7 +60,7 @@ public class CapellaController implements ICapellaController {
             convertedFile = this.capellaService.convert(uploadPath);
         } catch (final ParserConfigurationException | IOException | SAXException e) {
             CapellaController.logger.error(e.getMessage(), e);
-            throw new InternalServerErrorException("Not able to convert the given file!", e);
+            throw new IllegalArgumentException("Not able to convert the given file!", e);
         }
 
         //Create response...
@@ -70,7 +69,7 @@ public class CapellaController implements ICapellaController {
             result = this.createResponse(convertedFile);
         } catch (final IOException ioe) {
             CapellaController.logger.error(ioe.getMessage(), ioe);
-            throw new InternalServerErrorException(String.format("Not able to create the result path located at %s", convertedFile));
+            throw new IllegalArgumentException(String.format("Not able to create the result path located at %s", convertedFile));
         } finally {
             //Delete converted file
             PathUtils.deleteQuietly(convertedFile);
