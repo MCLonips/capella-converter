@@ -35,7 +35,7 @@
         <spring-boot.version>2.2.2.RELEASE</spring-boot.version>
 
         <!--HELPER-->
-        <google-guava.version>28.1-jre</google-guava.version>
+        <google-guava.version>29.0-jre</google-guava.version>
         <apache-commons.version>2.6</apache-commons.version>
         <apache-poi.version>4.1.0</apache-poi.version>
 
