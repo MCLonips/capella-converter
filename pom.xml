@@ -36,7 +36,7 @@
 
         <!--HELPER-->
         <google-guava.version>28.1-jre</google-guava.version>
-        <apache-commons.version>2.6</apache-commons.version>
+        <apache-commons.version>2.7</apache-commons.version>
         <apache-poi.version>4.1.0</apache-poi.version>
 
         <!--TESTS-->
